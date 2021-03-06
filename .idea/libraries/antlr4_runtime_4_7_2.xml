@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="antlr4-runtime-4.7.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/gosu-1.14.16/lib/antlr4-runtime-4.7.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/gosu-1.14.16/lib/gosu-core-1.14.16.jar!/" />
+      <root url="jar://$PROJECT_DIR$/gosu-1.14.16/lib/gosu-core-api-1.14.16.jar!/" />
+      <root url="jar://$PROJECT_DIR$/gosu-1.14.16/lib/gosu-doc-1.14.16.jar!/" />
+      <root url="jar://$PROJECT_DIR$/gosu-1.14.16/lib/gosu-lab-1.14.16.jar!/" />
+      <root url="jar://$PROJECT_DIR$/gosu-1.14.16/lib/gw-asm-all-7.8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/gosu-1.14.16/lib/gw-jcommander-1.72.jar!/" />
+      <root url="jar://$PROJECT_DIR$/gosu-1.14.16/lib/manifold-2019.1.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/gosu-1.14.16/lib/manifold-util-2019.1.12.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
