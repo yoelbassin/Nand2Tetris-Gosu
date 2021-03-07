@@ -1,0 +1,7 @@
+var T = new Translator()
+T.push("constant", "5")
+T.push("constant", "8")
+T.neg()
+T.add()
+T.push("constant", "12")
+T.sub()
