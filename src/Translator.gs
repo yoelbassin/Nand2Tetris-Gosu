@@ -6,7 +6,13 @@ class Translator {
   var text : String
   var className : String
 
+  var trueCounter : int
+  var falseCounter : int
+
   construct() {
+    trueCounter = 0
+    falseCounter = 0
+    text = new String()
     segments = new HashMap<String, String>()
     segments.put('local', 'LCL')
     segments.put('argument', 'ARG')
@@ -22,7 +28,7 @@ class Translator {
     switch (segment) {
       case "local": { //TODO implement or "argument" or "this" or "that"
         /**G1 - local, argument, this, that**/
-        addText('@'+segments[segment]) //A=SG
+        addText('@' + segments[segment]) //A=SG
         addText('D=M') //D=M[SG]
         addText('@' + x) //A=X
         addText('A=D+A') //A=M[SG]+X
@@ -104,17 +110,76 @@ class Translator {
 
   function eq() : void {
     /** True if x=y and false otherwise **/
-    //TODO
+    addText('@SP') //A=SP
+    addText('A=M-1') //A=M[SP]-1
+    addText('D=M') //D=M[M[SP]-1]  - X
+    addText('A=A-1') //A=M[SP]-2
+    addText('D=M-D') //D= Y - X
+
+    addText('@TRUE'+trueCounter)
+    addText('D;JEQ')
+    addText('D=1')
+    addText('(TRUE'+trueCounter+')')
+    addText('D=D-1')
+
+    addText('@SP')
+    addText('M=M-1')
+    addText('@SP')
+    addText('A=M-1')
+    addText('M=D')
+    trueCounter++
   }
 
   function gt() : void {
     /** True if x>y and false otherwise **/
-    //TODO
+    addText('@SP') //A=SP
+    addText('A=M-1') //A=M[SP]-1
+    addText('D=M') //D=M[M[SP]-1]
+    addText('A=A-1') //A=M[SP]-2
+    addText('D=M-D') //D= Y - X
+
+    addText('@TRUE'+trueCounter)
+    addText('D;JGT')
+    addText('D=0')
+    addText('@FALSE'+falseCounter)
+    addText('0;JMP')
+    addText('(TRUE'+trueCounter+')')
+    addText('D=-1')
+    addText('(FALSE'+falseCounter+')')
+
+    addText('@SP')
+    addText('M=M-1')
+    addText('@SP')
+    addText('A=M-1')
+    addText('M=D')
+    trueCounter++
+    falseCounter++
   }
 
   function lt() : void {
     /** True if x<y and false otherwise **/
-    //TODO
+    addText('@SP') //A=SP
+    addText('A=M-1') //A=M[SP]-1
+    addText('D=M') //D=M[M[SP]-1]
+    addText('A=A-1') //A=M[SP]-2
+    addText('D=M-D') //D= Y - X
+
+    addText('@TRUE'+trueCounter)
+    addText('D;JLT')
+    addText('D=0')
+    addText('@FALSE'+falseCounter)
+    addText('0;JMP')
+    addText('(TRUE'+trueCounter+')')
+    addText('D=-1')
+    addText('(FALSE'+falseCounter+')')
+
+    addText('@SP')
+    addText('M=M-1')
+    addText('@SP')
+    addText('A=M-1')
+    addText('M=D')
+    trueCounter++
+    falseCounter++
   }
 
   function _and() : void {
