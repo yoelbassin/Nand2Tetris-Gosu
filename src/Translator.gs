@@ -2,7 +2,7 @@ uses java.io.*
 uses java.util.HashMap
 
 class Translator {
-  var segments :HashMap<String, String>
+  var segments : HashMap<String, String>
   var text : String
   var className : String
 
@@ -22,6 +22,61 @@ class Translator {
     addText('D=A')
     addText('@SP')
     addText('M=D')
+  }
+
+  function translate(name : String) : void {
+    var file = new File(name)
+    var reader = new Scanner(file)
+    while (reader.hasNextLine()) {
+      var data = reader.nextLine().split(" ")
+      switch (data[0]) {
+        case ("add"): {
+          add()
+          break
+        }
+        case ("sub"): {
+          sub()
+          break
+        }
+        case ("neg"): {
+          neg()
+          break
+        }
+        case ("eq"): {
+          eq()
+          break
+        }
+        case ("gt"): {
+          gt()
+          break
+        }
+        case ("lt"): {
+          lt()
+          break
+        }
+        case ("and"): {
+          _and()
+          break
+        }
+        case ("or"): {
+          _or()
+          break
+        }
+        case ("not"): {
+          _not()
+          break
+        }
+        case ("push"): {
+          push(data[1], data[2])
+          break
+        }
+        case ("pop"): {
+          pop(data[1], data[2])
+          break
+        }
+      }
+    }
+    writeToFile('test2.asm')
   }
 
   function push(segment : String, x : String) : void {
@@ -49,13 +104,13 @@ class Translator {
       }
       case "ponter": {
         /**G4 - pointer 0, pointer 1**/
-        switch (x){
-         case "0": {
-           addText('@THIS')
-         }
-         case "1": {
-           addText('@THAT')
-         }
+        switch (x) {
+          case "0": {
+            addText('@THIS')
+          }
+          case "1": {
+            addText('@THAT')
+          }
         }
         addText('D=M')
       }
@@ -72,7 +127,7 @@ class Translator {
     }
   }
 
-  function pop(segment : String, x : int) : void {
+  function pop(segment : String, x : String) : void {
     /**G1 - local, argument, this, that**/
     /**G2 - temp**/
     /**G3 - static**/
@@ -116,10 +171,10 @@ class Translator {
     addText('A=A-1') //A=M[SP]-2
     addText('D=M-D') //D= Y - X
 
-    addText('@TRUE'+trueCounter)
+    addText('@TRUE' + trueCounter)
     addText('D;JEQ')
     addText('D=1')
-    addText('(TRUE'+trueCounter+')')
+    addText('(TRUE' + trueCounter + ')')
     addText('D=D-1')
 
     addText('@SP')
@@ -138,14 +193,14 @@ class Translator {
     addText('A=A-1') //A=M[SP]-2
     addText('D=M-D') //D= Y - X
 
-    addText('@TRUE'+trueCounter)
+    addText('@TRUE' + trueCounter)
     addText('D;JGT')
     addText('D=0')
-    addText('@FALSE'+falseCounter)
+    addText('@FALSE' + falseCounter)
     addText('0;JMP')
-    addText('(TRUE'+trueCounter+')')
+    addText('(TRUE' + trueCounter + ')')
     addText('D=-1')
-    addText('(FALSE'+falseCounter+')')
+    addText('(FALSE' + falseCounter + ')')
 
     addText('@SP')
     addText('M=M-1')
@@ -164,14 +219,14 @@ class Translator {
     addText('A=A-1') //A=M[SP]-2
     addText('D=M-D') //D= Y - X
 
-    addText('@TRUE'+trueCounter)
+    addText('@TRUE' + trueCounter)
     addText('D;JLT')
     addText('D=0')
-    addText('@FALSE'+falseCounter)
+    addText('@FALSE' + falseCounter)
     addText('0;JMP')
-    addText('(TRUE'+trueCounter+')')
+    addText('(TRUE' + trueCounter + ')')
     addText('D=-1')
-    addText('(FALSE'+falseCounter+')')
+    addText('(FALSE' + falseCounter + ')')
 
     addText('@SP')
     addText('M=M-1')
