@@ -12,57 +12,57 @@ class Translator {
     segments.put('argument', 'ARG')
     segments.put('this', 'THIS')
     segments.put('that', 'THAT')
-    print('@256')
-    print('D=A')
-    print('@SP')
-    print('M=D')
+    addText('@256')
+    addText('D=A')
+    addText('@SP')
+    addText('M=D')
   }
 
   function push(segment : String, x : String) : void {
     switch (segment) {
       case "local": { //TODO implement or "argument" or "this" or "that"
         /**G1 - local, argument, this, that**/
-        print('@'+segments[segment]) //A=SG
-        print('D=M') //D=M[SG]
-        print('@' + x) //A=X
-        print('A=D+A') //A=M[SG]+X
-        print('D=M') //D=M[M[SG]+X]
+        addText('@'+segments[segment]) //A=SG
+        addText('D=M') //D=M[SG]
+        addText('@' + x) //A=X
+        addText('A=D+A') //A=M[SG]+X
+        addText('D=M') //D=M[M[SG]+X]
       }
       case "temp": {
         /**G2 - temp**/
-        print('@5')
-        print('D=A')
-        print('@' + x)
-        print('A=D+A')
-        print('D=M')
+        addText('@5')
+        addText('D=A')
+        addText('@' + x)
+        addText('A=D+A')
+        addText('D=M')
       }
       case "static": {
         /**G3 - static**/
-        print('@' + className + '.' + x)
-        print('D=M')
+        addText('@' + className + '.' + x)
+        addText('D=M')
       }
       case "ponter": {
         /**G4 - pointer 0, pointer 1**/
         switch (x){
          case "0": {
-           print('@THIS')
+           addText('@THIS')
          }
          case "1": {
-           print('@THAT')
+           addText('@THAT')
          }
         }
-        print('D=M')
+        addText('D=M')
       }
       case "constant": {
         /**G5 - constant**/
-        print('@' + x)
-        print('D=A')
+        addText('@' + x)
+        addText('D=A')
       }
-      print('@SP')
-      print('A=M')
-      print('M=D')
-      print('@SP')
-      print('M=M+1')
+      addText('@SP')
+      addText('A=M')
+      addText('M=D')
+      addText('@SP')
+      addText('M=M+1')
     }
   }
 
@@ -75,31 +75,31 @@ class Translator {
 
   function add() : void {
     /** X + Y **/
-    print('@SP') //A=SP
-    print('A=M-1')
-    print('D=M') //D=M[A]
-    print('A=A-1') //A=A-1
-    print('M=D+M') //M[A]=D+M[A]
-    print('@SP')
-    print('M=M-1')
+    addText('@SP') //A=SP
+    addText('A=M-1')
+    addText('D=M') //D=M[A]
+    addText('A=A-1') //A=A-1
+    addText('M=D+M') //M[A]=D+M[A]
+    addText('@SP')
+    addText('M=M-1')
   }
 
   function sub() : void {
     /** X - Y **/
-    print('@SP') //A=SP
-    print('A=M-1')
-    print('D=M') //D=M[A]
-    print('A=A-1') //A=A-1
-    print('M=M-D') //M[A]=D+M[A]
-    print('@SP')
-    print('M=M-1')
+    addText('@SP') //A=SP
+    addText('A=M-1')
+    addText('D=M') //D=M[A]
+    addText('A=A-1') //A=A-1
+    addText('M=M-D') //M[A]=D+M[A]
+    addText('@SP')
+    addText('M=M-1')
   }
 
   function neg() : void {
     /** -Y **/
-    print('@SP')
-    print('A=M-1')
-    print('M=-M')
+    addText('@SP')
+    addText('A=M-1')
+    addText('M=-M')
   }
 
   function eq() : void {
@@ -119,38 +119,38 @@ class Translator {
 
   function _and() : void {
     /** X and Y **/
-    print('@SP')
-    print('A=M-1')
-    print('D=M')
-    print('A=A-1')
-    print('M=D&M')
-    print('@SP')
-    print('M=M-1')
+    addText('@SP')
+    addText('A=M-1')
+    addText('D=M')
+    addText('A=A-1')
+    addText('M=D&M')
+    addText('@SP')
+    addText('M=M-1')
   }
 
   function _or() : void {
     /** X or Y **/
-    print('@SP')
-    print('A=M-1')
-    print('D=M')
-    print('A=A-1')
-    print('M=D|M')
-    print('@SP')
-    print('M=M-1')
+    addText('@SP')
+    addText('A=M-1')
+    addText('D=M')
+    addText('A=A-1')
+    addText('M=D|M')
+    addText('@SP')
+    addText('M=M-1')
   }
 
   function _not() : void {
     /** not Y **/
-    print('@SP')
-    print('A=M-1')
-    print('M=!M')
+    addText('@SP')
+    addText('A=M-1')
+    addText('M=!M')
   }
 
   private function addText(_text : String) {
     text += _text + '\n'
   }
 
-  private function writeToFile(name : String) {
+  function writeToFile(name : String) {
     var writer = new FileWriter(name)
     writer.write(text)
     writer.close()
