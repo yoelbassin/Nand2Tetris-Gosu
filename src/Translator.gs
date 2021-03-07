@@ -1,11 +1,17 @@
 uses java.io.*
+uses java.util.HashMap
 
 class Translator {
-  var sp : int
+  var segments :HashMap<String, String>
   var text : String
   var className : String
 
   construct() {
+    segments = new HashMap<String, String>()
+    segments.put('local', 'LCL')
+    segments.put('argument', 'ARG')
+    segments.put('this', 'THIS')
+    segments.put('that', 'THAT')
     print('@256')
     print('D=A')
     print('@SP')
@@ -14,9 +20,9 @@ class Translator {
 
   function push(segment : String, x : String) : void {
     switch (segment) {
-      case "local": {
+      case "local": { //TODO implement or "argument" or "this" or "that"
         /**G1 - local, argument, this, that**/
-        print('@LCL') //A=SG
+        print('@'+segments[segment]) //A=SG
         print('D=M') //D=M[SG]
         print('@' + x) //A=X
         print('A=D+A') //A=M[SG]+X
