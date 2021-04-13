@@ -5,23 +5,47 @@ class Translator {
   var segments : HashMap<String, String>
   var text : String
   var className : String
+  var stack = new ArrayDeque<String>();
+
+  var c : int
 
   var trueCounter : int
   var falseCounter : int
+  var returnCounter : int
 
   construct() {
+
     trueCounter = 0
     falseCounter = 0
+    returnCounter = 0
     text = new String()
     segments = new HashMap<String, String>()
     segments.put('local', 'LCL')
     segments.put('argument', 'ARG')
     segments.put('this', 'THIS')
     segments.put('that', 'THAT')
+    c = 1
+  }
+
+  function run(path : String) : void {
+    var readFile = new File(path)
+    if (readFile.isDirectory()) {
+      foreach (var file in readFile.listFiles()) {
+        var fname = String.valueOf(file)
+        if (fname.split('\\\\')[fname.split('\\\\').length - 1].split('\\.')[1] == 'vm') {
+          print(fname)
+          translate(fname)
+        }
+      }
+    } else {
+      translate(String.valueOf(readFile))
+    }
+    writeToFile(path.split('\\\\')[path.split('\\\\').length - 1] + '.asm')
   }
 
   function translate(name : String) : void {
     className = name.split('\\\\')[name.split('\\\\').length - 1].split('\\.')[0]
+    stack.push(className)
     var file = new File(name)
     var reader = new Scanner(file)
     while (reader.hasNextLine()) {
@@ -84,9 +108,23 @@ class Translator {
           if_goto(data[1])
           break
         }
+        case ("call"): {
+          if (data.length > 2) call(data[1], data[2])
+          else call(data[1], '')
+          break
+        }
+        case ("function"): {
+          if (data.length > 2) func(data[1], data[2])
+          else func(data[1], '')
+          break
+        }
+        case ("return"): {
+          ret()
+          break
+        }
       }
     }
-    writeToFile(className + '.asm')
+//    writeToFile(className + '.asm')
   }
 
   function push(segment : String, x : String) : void {
@@ -139,12 +177,20 @@ class Translator {
         addText('D=A')
         break
       }
+      default: {
+        addText('@' + x)
+        addText('D=M')
+      }
     }
     addText('@SP')
     addText('A=M')
     addText('M=D')
     addText('@SP')
     addText('M=M+1')
+  }
+
+  function push(arg : String) : void {
+    push('', arg)
   }
 
   function pop(segment : String, x : String) : void {
@@ -257,10 +303,10 @@ class Translator {
     addText('A=A-1') //A=M[SP]-2
     addText('D=M-D') //D= Y - X
 
-    addText('@TRUE' + trueCounter)
+    addText('@' + stack.peek() + '.TRUE' + trueCounter)
     addText('D;JEQ')
     addText('D=1')
-    addText('(TRUE' + trueCounter + ')')
+    addText('(' + stack.peek() + '.TRUE' + trueCounter + ')')
     addText('D=D-1')
 
     addText('@SP')
@@ -279,14 +325,14 @@ class Translator {
     addText('A=A-1') //A=M[SP]-2
     addText('D=M-D') //D= Y - X
 
-    addText('@TRUE' + trueCounter)
+    addText('@' + stack.peek() + '.TRUE' + trueCounter)
     addText('D;JGT')
     addText('D=0')
-    addText('@FALSE' + falseCounter)
+    addText('@' + stack.peek() + '.FALSE' + falseCounter)
     addText('0;JMP')
-    addText('(TRUE' + trueCounter + ')')
+    addText('(' + stack.peek() + '.TRUE' + trueCounter + ')')
     addText('D=-1')
-    addText('(FALSE' + falseCounter + ')')
+    addText('(' + stack.peek() + '.FALSE' + falseCounter + ')')
 
     addText('@SP')
     addText('M=M-1')
@@ -305,14 +351,14 @@ class Translator {
     addText('A=A-1') //A=M[SP]-2
     addText('D=M-D') //D= Y - X
 
-    addText('@TRUE' + trueCounter)
+    addText('@' + stack.peek() + '.TRUE' + trueCounter)
     addText('D;JLT')
     addText('D=0')
-    addText('@FALSE' + falseCounter)
+    addText('@' + stack.peek() + '.FALSE' + falseCounter)
     addText('0;JMP')
-    addText('(TRUE' + trueCounter + ')')
+    addText('(' + stack.peek() + '.TRUE' + trueCounter + ')')
     addText('D=-1')
-    addText('(FALSE' + falseCounter + ')')
+    addText('(' + stack.peek() + '.FALSE' + falseCounter + ')')
 
     addText('@SP')
     addText('M=M-1')
@@ -353,11 +399,11 @@ class Translator {
   }
 
   function label(labelName : String) : void {
-    addText('(' + className + '.' + labelName + ')')
+    addText('(' + stack.peek() + '.' + labelName + ')')
   }
 
   function goto(labalName : String) : void {
-    addText('@' + className + '.' + labalName)
+    addText('@' + stack.peek() + '.' + labalName)
     addText('0;JMP')
   }
 
@@ -367,16 +413,120 @@ class Translator {
     addText('D=M')
     addText('@SP')
     addText('M=M-1')
-    addText('@' + className + '.' + labelName)
+    addText('@' + stack.peek() + '.' + labelName)
     addText('D;JNE')
   }
 
-  function func(func_name : String, local_vars_num : String) : void {
+  function call(func_name : String, n_args_s : String) : void {
+    push('constant', func_name + '$ret.' + String.valueOf(returnCounter))
 
+    push('LCL')
+
+    push('ARG')
+
+    push('THIS')
+
+    push('THAT')
+
+    addText('@SP')
+    addText('D=M')
+    addText('@5')
+    addText('D=D-A')
+    addText('@' + n_args_s)
+    addText('D=D-A')
+    addText('@ARG')
+    addText('M=D')
+
+    addText('@SP')
+    addText('D=M')
+    addText('@LCL')
+    addText('M=D')
+
+    addText('@' + func_name)
+    addText('0;JMP')
+    addText('(' + func_name + '$ret.' + String.valueOf(returnCounter) + ')')
+    returnCounter++
+  }
+
+
+  function func(func_name : String, n_args : String) : void {
+    addText('(' + func_name + ')')
+    stack.push(func_name)
+    for (i in 0..|Integer.valueOf(n_args)) {
+      push('constant', '0')
+    }
+  }
+
+  function ret() : void {
+    addText('@LCL')
+    addText('D=M')
+    addText('@R13')
+    addText('M=D')
+
+    addText('@R13')
+    addText('D=M')
+    addText('@5')
+    addText('D=D-A')
+    addText('A=D')
+    addText('D=M')
+    addText('@R14')
+    addText('M=D')
+
+    addText('@SP')
+    addText('A=M-1')
+    addText('D=M')
+    addText('@ARG')
+    addText('A=M')
+    addText('M=D')
+    addText('@SP')
+    addText('M=M-1')
+
+    addText('@ARG')
+    addText('D=M')
+    addText('@SP')
+    addText('M=D+1')
+
+    addText('@R13')
+    addText('D=M')
+    addText('@1')
+    addText('A=D-A')
+    addText('D=M')
+    addText('@THAT')
+    addText('M=D')
+
+    addText('@R13')
+    addText('D=M')
+    addText('@2')
+    addText('A=D-A')
+    addText('D=M')
+    addText('@THIS')
+    addText('M=D')
+
+    addText('@R13')
+    addText('D=M')
+    addText('@3')
+    addText('A=D-A')
+    addText('D=M')
+    addText('@ARG')
+    addText('M=D')
+
+    addText('@R13')
+    addText('D=M')
+    addText('@4')
+    addText('A=D-A')
+    addText('D=M')
+    addText('@LCL')
+    addText('M=D')
+
+    addText('@R14')
+    addText('A=M')
+    addText('0;JMP')
+    //stack.pop()
   }
 
   private function addText(_text : String) {
-    print(_text)
+    print(String.valueOf(c) + "  " + _text)
+    c++
     text += _text + '\n'
   }
 
