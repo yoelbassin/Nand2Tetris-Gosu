@@ -21,7 +21,7 @@ class Translator {
   }
 
   function translate(name : String) : void {
-    className = name.split('\\\\')[name.split('\\\\').length-1].split('\\.')[0]
+    className = name.split('\\\\')[name.split('\\\\').length - 1].split('\\.')[0]
     var file = new File(name)
     var reader = new Scanner(file)
     while (reader.hasNextLine()) {
@@ -72,9 +72,21 @@ class Translator {
           pop(data[1], data[2])
           break
         }
+        case ("label"): {
+          label(data[1])
+          break
+        }
+        case ("goto"): {
+          goto(data[1])
+          break
+        }
+        case ("if-goto"): {
+          if_goto(data[1])
+          break
+        }
       }
     }
-    writeToFile('test.asm')
+    writeToFile(className + '.asm')
   }
 
   function push(segment : String, x : String) : void {
@@ -82,7 +94,7 @@ class Translator {
       case "local":
       case "argument":
       case "this":
-      case "that":  {
+      case "that": {
         /**G1 - local, argument, this, that**/
         addText('@' + segments[segment]) //A=SG
         addText('D=M') //D=M[SG]
@@ -164,7 +176,7 @@ class Translator {
         addText('A=M-1')
         addText('D=M')
 
-        addText('@' + String.valueOf(5+Integer.valueOf(x)))
+        addText('@' + String.valueOf(5 + Integer.valueOf(x)))
 
         addText('M=D')
         addText('@SP')
@@ -338,6 +350,29 @@ class Translator {
     addText('@SP')
     addText('A=M-1')
     addText('M=!M')
+  }
+
+  function label(labelName : String) : void {
+    addText('(' + className + '.' + labelName + ')')
+  }
+
+  function goto(labalName : String) : void {
+    addText('@' + className + '.' + labalName)
+    addText('0;JMP')
+  }
+
+  function if_goto(labelName : String) : void {
+    addText('@SP')
+    addText('A=M-1')
+    addText('D=M')
+    addText('@SP')
+    addText('M=M-1')
+    addText('@' + className + '.' + labelName)
+    addText('D;JNE')
+  }
+
+  function func(func_name : String, local_vars_num : String) : void {
+
   }
 
   private function addText(_text : String) {

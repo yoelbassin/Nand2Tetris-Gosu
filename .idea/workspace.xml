@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9c22ee47-169c-48a1-9be9-5cc90057a43b" name="Default Changelist" comment="">
+    <list default="true" id="9c22ee47-169c-48a1-9be9-5cc90057a43b" name="Default Changelist" comment="commit 2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Translator.gs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Translator.gs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/run.gsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/run.gsp" afterDir="false" />
@@ -33,10 +33,15 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/gosu-1.14.16/lib/manifold-util-2019.1.12.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\bassi\Documents\PPL\PPL" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="run" type="GosuProgramRunConfiguration" factoryName="Gosu Program" temporary="true">
@@ -82,6 +87,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="commit 2" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="1665" y="526" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1618302397995">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="1665" y="526" key="#com.intellij.fileTypes.FileTypeChooser/0.0.2560.1440@0.0.2560.1440" timestamp="1618302397995" />
     <state x="1558" y="270" key="CommitChangelistDialog2" timestamp="1616432948023">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
@@ -94,34 +103,42 @@
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state x="1610" y="417" key="FileChooserDialogImpl/0.0.2560.1440@0.0.2560.1440" timestamp="1615072206684" />
-    <state width="1234" height="546" key="GridCell.Tab.0.bottom" timestamp="1616432859969">
+    <state width="1234" height="512" key="GridCell.Tab.0.bottom" timestamp="1618306543471">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state width="1234" height="546" key="GridCell.Tab.0.bottom/0.0.2560.1440@0.0.2560.1440" timestamp="1616432859969" />
-    <state width="1234" height="546" key="GridCell.Tab.0.center" timestamp="1616432859969">
+    <state width="1234" height="512" key="GridCell.Tab.0.bottom/0.0.2560.1440@0.0.2560.1440" timestamp="1618306543471" />
+    <state width="1234" height="512" key="GridCell.Tab.0.center" timestamp="1618306543471">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state width="1234" height="546" key="GridCell.Tab.0.center/0.0.2560.1440@0.0.2560.1440" timestamp="1616432859969" />
-    <state width="1234" height="546" key="GridCell.Tab.0.left" timestamp="1616432859969">
+    <state width="1234" height="512" key="GridCell.Tab.0.center/0.0.2560.1440@0.0.2560.1440" timestamp="1618306543471" />
+    <state width="1234" height="512" key="GridCell.Tab.0.left" timestamp="1618306543471">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state width="1234" height="546" key="GridCell.Tab.0.left/0.0.2560.1440@0.0.2560.1440" timestamp="1616432859969" />
-    <state width="1234" height="546" key="GridCell.Tab.0.right" timestamp="1616432859969">
+    <state width="1234" height="512" key="GridCell.Tab.0.left/0.0.2560.1440@0.0.2560.1440" timestamp="1618306543471" />
+    <state width="1234" height="512" key="GridCell.Tab.0.right" timestamp="1618306543471">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state width="1234" height="546" key="GridCell.Tab.0.right/0.0.2560.1440@0.0.2560.1440" timestamp="1616432859969" />
+    <state width="1234" height="512" key="GridCell.Tab.0.right/0.0.2560.1440@0.0.2560.1440" timestamp="1618306543471" />
     <state x="1384" y="250" key="SettingsEditor" timestamp="1615070163834">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state x="1384" y="250" key="SettingsEditor/0.0.2560.1440@0.0.2560.1440" timestamp="1615070163834" />
-    <state x="1779" y="501" key="com.intellij.ide.util.TipDialog" timestamp="1616086983271">
+    <state x="1779" y="501" key="com.intellij.ide.util.TipDialog" timestamp="1618300312136">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state x="1779" y="501" key="com.intellij.ide.util.TipDialog/0.0.2560.1440@0.0.2560.1440" timestamp="1616086983271" />
+    <state x="1779" y="501" key="com.intellij.ide.util.TipDialog/0.0.2560.1440@0.0.2560.1440" timestamp="1618300312136" />
     <state x="1892" y="593" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1615072173173">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state x="1892" y="593" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1440@0.0.2560.1440" timestamp="1615072173173" />
+    <state x="459" y="583" width="783" height="594" key="dock-window-1" timestamp="1618302289937">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="459" y="583" width="783" height="594" key="dock-window-1/0.0.2560.1440@0.0.2560.1440" timestamp="1618302289937" />
+    <state x="400" y="570" width="783" height="594" key="dock-window-2" timestamp="1618302289937">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="400" y="570" width="783" height="594" key="dock-window-2/0.0.2560.1440@0.0.2560.1440" timestamp="1618302289937" />
     <state x="1593" y="321" width="607" height="804" key="find.popup" timestamp="1615113745691">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
