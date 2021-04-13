@@ -25,6 +25,13 @@ class Translator {
     segments.put('this', 'THIS')
     segments.put('that', 'THAT')
     c = 1
+    /**
+    addText('@256')
+    addText('D=A')
+    addText('@SP')
+    addText('M=D')
+    call('Sys.init', '0')
+     **/
   }
 
   function run(path : String) : void {
