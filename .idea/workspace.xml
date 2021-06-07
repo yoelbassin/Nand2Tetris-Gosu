@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c22ee47-169c-48a1-9be9-5cc90057a43b" name="Default Changelist" comment="commit 2">
+      <change afterPath="$PROJECT_DIR$/src/Symbol.gs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SymbolTable.gs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/VMWriter.gs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Translator.gs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Translator.gs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CompilationEngine.gs" beforeDir="false" afterPath="$PROJECT_DIR$/src/CompilationEngine.gs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tokenizer.gs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tokenizer.gs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/run.gsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/run.gsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -14,8 +18,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="GosuClass" />
         <option value="GosuProgram" />
+        <option value="GosuInterface" />
+        <option value="GosuEnhancement" />
+        <option value="GosuClass" />
       </list>
     </option>
   </component>
@@ -43,7 +49,7 @@
       <recent name="C:\Users\bassi\Documents\PPL\PPL" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Gosu Program.run">
     <configuration name="run" type="GosuProgramRunConfiguration" factoryName="Gosu Program" temporary="true">
       <module name="PPL" />
       <setting name="qualifiedName" value="run" />
@@ -55,9 +61,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="test" type="GosuProgramRunConfiguration" factoryName="Gosu Program" temporary="true">
+      <module name="PPL" />
+      <setting name="qualifiedName" value="test" />
+      <setting name="path" value="$PROJECT_DIR$/src/test.gsp" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workDir" value="C:\Users\bassi\Documents\PPL\PPL" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Gosu Program.run" />
+        <item itemvalue="Gosu Program.test" />
       </list>
     </recent_temporary>
   </component>
@@ -91,10 +109,14 @@
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state x="1665" y="526" key="#com.intellij.fileTypes.FileTypeChooser/0.0.2560.1440@0.0.2560.1440" timestamp="1618302397995" />
-    <state x="1558" y="270" key="CommitChangelistDialog2" timestamp="1616432948023">
+    <state x="1640" y="464" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1622816130987">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state x="1558" y="270" key="CommitChangelistDialog2/0.0.2560.1440@0.0.2560.1440" timestamp="1616432948023" />
+    <state x="1640" y="464" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.2560.1440@0.0.2560.1440" timestamp="1622816130987" />
+    <state x="1558" y="270" key="CommitChangelistDialog2" timestamp="1621965606950">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="1558" y="270" key="CommitChangelistDialog2/0.0.2560.1440@0.0.2560.1440" timestamp="1621965606950" />
     <state x="496" y="82" key="DiffContextDialog" timestamp="1615070835860">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
@@ -103,49 +125,53 @@
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state x="1610" y="417" key="FileChooserDialogImpl/0.0.2560.1440@0.0.2560.1440" timestamp="1615072206684" />
-    <state width="1234" height="512" key="GridCell.Tab.0.bottom" timestamp="1618306543471">
+    <state width="1234" height="541" key="GridCell.Tab.0.bottom" timestamp="1623092922071">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state width="1234" height="512" key="GridCell.Tab.0.bottom/0.0.2560.1440@0.0.2560.1440" timestamp="1618306543471" />
-    <state width="1234" height="512" key="GridCell.Tab.0.center" timestamp="1618306543471">
+    <state width="1234" height="541" key="GridCell.Tab.0.bottom/0.0.2560.1440@0.0.2560.1440" timestamp="1623092922071" />
+    <state width="1234" height="541" key="GridCell.Tab.0.center" timestamp="1623092922071">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state width="1234" height="512" key="GridCell.Tab.0.center/0.0.2560.1440@0.0.2560.1440" timestamp="1618306543471" />
-    <state width="1234" height="512" key="GridCell.Tab.0.left" timestamp="1618306543471">
+    <state width="1234" height="541" key="GridCell.Tab.0.center/0.0.2560.1440@0.0.2560.1440" timestamp="1623092922071" />
+    <state width="1234" height="541" key="GridCell.Tab.0.left" timestamp="1623092922071">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state width="1234" height="512" key="GridCell.Tab.0.left/0.0.2560.1440@0.0.2560.1440" timestamp="1618306543471" />
-    <state width="1234" height="512" key="GridCell.Tab.0.right" timestamp="1618306543471">
+    <state width="1234" height="541" key="GridCell.Tab.0.left/0.0.2560.1440@0.0.2560.1440" timestamp="1623092922071" />
+    <state width="1234" height="541" key="GridCell.Tab.0.right" timestamp="1623092922071">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state width="1234" height="512" key="GridCell.Tab.0.right/0.0.2560.1440@0.0.2560.1440" timestamp="1618306543471" />
+    <state width="1234" height="541" key="GridCell.Tab.0.right/0.0.2560.1440@0.0.2560.1440" timestamp="1623092922071" />
     <state x="1384" y="250" key="SettingsEditor" timestamp="1615070163834">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state x="1384" y="250" key="SettingsEditor/0.0.2560.1440@0.0.2560.1440" timestamp="1615070163834" />
-    <state x="1779" y="501" key="com.intellij.ide.util.TipDialog" timestamp="1618300312136">
+    <state x="1779" y="501" key="com.intellij.ide.util.TipDialog" timestamp="1623091169413">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state x="1779" y="501" key="com.intellij.ide.util.TipDialog/0.0.2560.1440@0.0.2560.1440" timestamp="1618300312136" />
+    <state x="1779" y="501" key="com.intellij.ide.util.TipDialog/0.0.2560.1440@0.0.2560.1440" timestamp="1623091169413" />
     <state x="1892" y="593" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1615072173173">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state x="1892" y="593" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1440@0.0.2560.1440" timestamp="1615072173173" />
-    <state x="459" y="583" width="783" height="594" key="dock-window-1" timestamp="1618302289937">
+    <state x="517" y="101" width="895" height="1426" key="dock-window-1" timestamp="1621848173677">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state x="459" y="583" width="783" height="594" key="dock-window-1/0.0.2560.1440@0.0.2560.1440" timestamp="1618302289937" />
+    <state x="517" y="101" width="895" height="1426" key="dock-window-1/0.0.2560.1440@0.0.2560.1440" timestamp="1621848173677" />
     <state x="400" y="570" width="783" height="594" key="dock-window-2" timestamp="1618302289937">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state x="400" y="570" width="783" height="594" key="dock-window-2/0.0.2560.1440@0.0.2560.1440" timestamp="1618302289937" />
-    <state x="1593" y="321" width="607" height="804" key="find.popup" timestamp="1615113745691">
+    <state x="1593" y="321" width="799" height="804" key="find.popup" timestamp="1622014369905">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state x="1593" y="321" width="607" height="804" key="find.popup/0.0.2560.1440@0.0.2560.1440" timestamp="1615113745691" />
-    <state x="1560" y="330" width="672" height="678" key="search.everywhere.popup" timestamp="1615118417936">
+    <state x="1593" y="321" width="799" height="804" key="find.popup/0.0.2560.1440@0.0.2560.1440" timestamp="1622014369905" />
+    <state x="1643" y="356" key="refactoring.ChangeSignatureDialog" timestamp="1618344331214">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state x="1560" y="330" width="672" height="678" key="search.everywhere.popup/0.0.2560.1440@0.0.2560.1440" timestamp="1615118417936" />
+    <state x="1643" y="356" key="refactoring.ChangeSignatureDialog/0.0.2560.1440@0.0.2560.1440" timestamp="1618344331214" />
+    <state x="1560" y="330" width="672" height="678" key="search.everywhere.popup" timestamp="1622996860065">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="1560" y="330" width="672" height="678" key="search.everywhere.popup/0.0.2560.1440@0.0.2560.1440" timestamp="1622996860065" />
   </component>
 </project>
